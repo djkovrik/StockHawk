@@ -1,3 +1,18 @@
 <resources>
+
+    <!--Main Activity-->
     <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="fab_elevation">6dp</dimen>
+    <dimen name="fab_translation_z">12dp</dimen>
+
+    <!--Add Stock Dialog-->
+    <dimen name="dialog_base_margin">4dp</dimen>
+    <dimen name="dialog_top_margin">16dp</dimen>
+
+    <!--Single list item layout-->
+    <dimen name="item_padding_base">16dp</dimen>
+    <dimen name="item_padding_base_half">16dp</dimen>
+    <dimen name="item_padding_text">3dp</dimen>
+
 </resources>
