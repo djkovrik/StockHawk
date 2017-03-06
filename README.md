@@ -23,7 +23,7 @@ All of the issues you need to address to meet specifications are hinted at in th
 - [ ] Stock Hawk does not crash when a user searches for a non-existent stock.
 - [ ] Stock Hawk Stocks can be displayed in a collection widget.
 - [ ] Stock Hawk app has content descriptions for all buttons.
-- [ ] Stock Hawk app supports layout mirroring using both the RTL attribute and the start/end tags.
+- [x] Stock Hawk app supports layout mirroring using both the RTL attribute and the start/end tags.
 - [ ] Strings are all included in the strings.xml file and untranslatable strings have a translatable tag marked to false.
 
 ### Required Behavior
