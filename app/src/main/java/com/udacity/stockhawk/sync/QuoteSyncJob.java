@@ -8,7 +8,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Handler;
+import android.os.Looper;
+import android.widget.Toast;
 
+import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.data.Contract;
 import com.udacity.stockhawk.data.PrefUtils;
 
@@ -40,7 +44,7 @@ public final class QuoteSyncJob {
     private QuoteSyncJob() {
     }
 
-    static void getQuotes(Context context) {
+    static void getQuotes(final Context context) {
 
         Timber.d("Running sync job");
 
@@ -76,7 +80,20 @@ public final class QuoteSyncJob {
                 StockQuote quote = stock.getQuote();
 
                 if (quote.getPrice() == null) {
-                    //TODO(1) Notify user that stock was not found.
+                    // Throw message from background thread into UI thread
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(context,
+                                    context.getString(R.string.error_stock_not_found),
+                                    Toast.LENGTH_SHORT)
+                                    .show();
+                        }
+                    });
+                    // Remove invalid stock from prefs
+                    PrefUtils.removeStock(context, symbol);
+
+                    // Skip the rest part of the loop
                     continue;
                 }
 
