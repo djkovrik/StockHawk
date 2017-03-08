@@ -17,6 +17,9 @@
     <string name="toast_stock_added_no_connectivity">Symbol %s added. Will refresh when network available.</string>
     <string name="toast_no_connectivity">Will refresh when network available.</string>
 
+    <!--Widget-->
+    <string name="widget_label">@string/app_name</string>
+
     <!--Default stock names-->
     <string name="default_stocks_yahoo" translatable="false">YHOO</string>
     <string name="default_stocks_apple" translatable="false">AAPL</string>
