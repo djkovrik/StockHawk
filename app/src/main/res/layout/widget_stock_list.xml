@@ -9,7 +9,7 @@
         android:id="@+id/widget_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="null"
+        android:divider="@null"
         android:dividerHeight="0dp"
         tools:listitem="@layout/widget_stock_list_item" />
 
