@@ -27,7 +27,7 @@
             style="@style/BidPriceTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/item_padding_base_half"
+            android:layout_marginEnd="@dimen/item_padding_base"
             tools:text="1000.00" />
 
         <TextView

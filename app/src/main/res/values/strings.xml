@@ -19,6 +19,7 @@
 
     <!--Widget-->
     <string name="widget_label">@string/app_name</string>
+    <string name="widget_empty_text">No stocks data available!</string>
 
     <!--Default stock names-->
     <string name="default_stocks_yahoo" translatable="false">YHOO</string>
