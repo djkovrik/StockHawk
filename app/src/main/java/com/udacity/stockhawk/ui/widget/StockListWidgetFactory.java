@@ -9,6 +9,7 @@ import android.widget.RemoteViewsService;
 
 import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.data.Contract;
+import com.udacity.stockhawk.ui.MainActivity;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -107,6 +108,9 @@ public class StockListWidgetFactory implements RemoteViewsService.RemoteViewsFac
         views.setTextViewText(R.id.widget_symbol, symbol);
         views.setTextViewText(R.id.widget_price, dollarFormat.format(rawPrice));
         views.setTextViewText(R.id.widget_change, percentage);
+
+        Intent intent = new Intent(mContext, MainActivity.class);
+        views.setOnClickFillInIntent(R.id.widget_list_item, intent);
 
         return views;
     }
