@@ -10,10 +10,7 @@ import android.widget.RemoteViewsService;
 import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.data.Contract;
 import com.udacity.stockhawk.ui.MainActivity;
-
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.Locale;
+import com.udacity.stockhawk.utils.StringUtils;
 
 import timber.log.Timber;
 
@@ -35,19 +32,10 @@ public class StockListWidgetFactory implements RemoteViewsService.RemoteViewsFac
     private Intent mIntent;
     private Cursor mCursor;
 
-    private final DecimalFormat dollarFormat;
-    private final DecimalFormat percentageFormat;
-
     public StockListWidgetFactory(Context mContext, Intent mIntent) {
         this.mContext = mContext;
         this.mIntent = mIntent;
         mCursor = null;
-
-        dollarFormat = (DecimalFormat) NumberFormat.getCurrencyInstance(Locale.US);
-        percentageFormat = (DecimalFormat) NumberFormat.getPercentInstance(Locale.getDefault());
-        percentageFormat.setMaximumFractionDigits(2);
-        percentageFormat.setMinimumFractionDigits(2);
-        percentageFormat.setPositivePrefix("+");
     }
 
 
@@ -102,11 +90,12 @@ public class StockListWidgetFactory implements RemoteViewsService.RemoteViewsFac
 
         String symbol = mCursor.getString(INDEX_SYMBOL);
         float rawPrice = mCursor.getFloat(INDEX_PRICE);
+        String price = StringUtils.getPrice(rawPrice);
         float rawChange = mCursor.getFloat(INDEX_PERCENTAGE_CHANGE);
-        String percentage = percentageFormat.format(rawChange / 100);
+        String percentage = StringUtils.getPercentageChange(rawChange);
 
         views.setTextViewText(R.id.widget_symbol, symbol);
-        views.setTextViewText(R.id.widget_price, dollarFormat.format(rawPrice));
+        views.setTextViewText(R.id.widget_price, price);
         views.setTextViewText(R.id.widget_change, percentage);
 
         Intent intent = new Intent(mContext, MainActivity.class);
