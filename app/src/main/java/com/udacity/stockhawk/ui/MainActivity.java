@@ -1,9 +1,11 @@
 package com.udacity.stockhawk.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -47,6 +49,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onClick(String symbol) {
         Timber.d("Symbol clicked: %s", symbol);
+
+        Uri uri = Contract.Quote.makeUriForStock(symbol);
+        Timber.d("Uri: %s", uri);
+
+        Intent intent = new Intent(getApplicationContext(), ChartActivity.class);
+        intent.putExtra(ChartActivity.STOCK_URI, uri);
+        startActivity(intent);
     }
 
     @Override
