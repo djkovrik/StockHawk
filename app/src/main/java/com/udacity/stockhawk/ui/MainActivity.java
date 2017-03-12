@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -46,6 +47,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @BindView(R.id.swipe_refresh)
     SwipeRefreshLayout swipeRefreshLayout;
     @SuppressWarnings("WeakerAccess")
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
+    @SuppressWarnings("WeakerAccess")
     @BindView(R.id.error)
     TextView error;
     private StockAdapter adapter;
@@ -74,6 +78,26 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         adapter = new StockAdapter(this, this);
         stockRecyclerView.setAdapter(adapter);
         stockRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        stockRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    fab.show();
+                }
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+
+                if ((dy > 0 || dy < 0) && fab.isShown()) {
+                    fab.hide();
+                }
+
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
 
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setRefreshing(true);
