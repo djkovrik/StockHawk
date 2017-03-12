@@ -39,19 +39,25 @@ public class ChartActivity extends AppCompatActivity
 
     private static final String[] STOCK_PROJECTION = {
             Contract.Quote.COLUMN_SYMBOL,
+            Contract.Quote.COLUMN_NAME,
             Contract.Quote.COLUMN_PRICE,
             Contract.Quote.COLUMN_HISTORY
     };
 
     private static final int SYMBOL_COLUMN_ID = 0;
-    private static final int PRICE_COLUMN_ID = 1;
-    private static final int HISTORY_COLUMN_ID = 2;
+    private static final int NAME_COLUMN_ID = 1;
+    private static final int PRICE_COLUMN_ID = 2;
+    private static final int HISTORY_COLUMN_ID = 3;
 
     private Uri mUri;
 
     @SuppressWarnings("WeakerAccess")
     @BindView(R.id.chart_symbol)
     TextView symbolTextView;
+
+    @SuppressWarnings("WeakerAccess")
+    @BindView(R.id.chart_name)
+    TextView nameTextView;
 
     @SuppressWarnings("WeakerAccess")
     @BindView(R.id.chart_price)
@@ -99,9 +105,11 @@ public class ChartActivity extends AppCompatActivity
         }
 
         String symbol = data.getString(SYMBOL_COLUMN_ID);
+        String name = data.getString(NAME_COLUMN_ID);
         String price = data.getString(PRICE_COLUMN_ID);
 
         symbolTextView.setText(symbol);
+        nameTextView.setText(name);
         priceTextView.setText(price);
 
         String history = data.getString(HISTORY_COLUMN_ID);

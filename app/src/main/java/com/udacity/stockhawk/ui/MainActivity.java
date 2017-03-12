@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-
                 if ((dy > 0 || dy < 0) && fab.isShown()) {
                     fab.hide();
                 }

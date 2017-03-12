@@ -12,6 +12,12 @@
         tools:text="GOOG" />
 
     <TextView
+        android:id="@+id/chart_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Alphabet Inc." />
+
+    <TextView
         android:id="@+id/chart_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
