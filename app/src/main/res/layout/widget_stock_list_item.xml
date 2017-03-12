@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/widget_list_item"
     android:layout_width="match_parent"
-    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:layout_height="@dimen/widget_list_item_height"
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
@@ -16,24 +16,27 @@
         tools:text="XXXX" />
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="end">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical">
 
         <TextView
             android:id="@+id/widget_price"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="4"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/widget_list_item_padding"
+            android:gravity="end"
             tools:text="100.00" />
 
         <TextView
             android:id="@+id/widget_change"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/widget_list_item_padding"
-            tools:text="10%" />
+            android:gravity="end"
+            tools:text="+99.99%" />
     </LinearLayout>
 
 </LinearLayout>

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Binder;
+import android.support.v4.content.ContextCompat;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
@@ -97,6 +98,11 @@ public class StockListWidgetFactory implements RemoteViewsService.RemoteViewsFac
         views.setTextViewText(R.id.widget_symbol, symbol);
         views.setTextViewText(R.id.widget_price, price);
         views.setTextViewText(R.id.widget_change, percentage);
+        views.setTextColor(R.id.widget_change, ContextCompat.getColor(mContext, R.color.material_green_700));
+
+        if (rawChange < 0) {
+            views.setTextColor(R.id.widget_change, ContextCompat.getColor(mContext, R.color.material_red_700));
+        }
 
         Intent intent = new Intent(mContext, MainActivity.class);
         views.setOnClickFillInIntent(R.id.widget_list_item, intent);
