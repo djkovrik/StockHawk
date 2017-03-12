@@ -147,6 +147,8 @@ public class ChartActivity extends AppCompatActivity
         XAxis top = historyChart.getXAxis();
         top.setValueFormatter(new MyXAxisFormatter());
 
+        historyChart.setContentDescription(getString(R.string.a11y_chart));
+
         historyChart.invalidate();
     }
 
