@@ -3,7 +3,6 @@
     <!--Main Activity-->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="fab_elevation">6dp</dimen>
     <dimen name="fab_translation_z">12dp</dimen>
 
     <!--Add Stock Dialog-->
@@ -14,6 +13,7 @@
     <dimen name="item_padding_base">16dp</dimen>
     <dimen name="item_padding_base_half">8dp</dimen>
     <dimen name="item_padding_text">3dp</dimen>
+    <dimen name="item_cardview_padding">2dp</dimen>
 
     <!--Widget-->
     <dimen name="widget_default_height">110dp</dimen>
@@ -21,5 +21,10 @@
     <dimen name="widget_default_resize_width">110dp</dimen>
     <dimen name="widget_default_resize_height">40dp</dimen>
     <dimen name="widget_list_item_padding">@dimen/item_padding_base</dimen>
+
+    <!--Elevation-->
+    <dimen name="fab_elevation">6dp</dimen>
+    <dimen name="toolbar_elevation">4dp</dimen>
+    <dimen name="recyclerview_elevation">2dp</dimen>
 
 </resources>

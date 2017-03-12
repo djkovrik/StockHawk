@@ -2,42 +2,53 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:layout_height="wrap_content"
     android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:paddingEnd="@dimen/item_padding_base"
-    android:paddingStart="@dimen/item_padding_base">
+    android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/symbol"
-        style="@style/StockSymbolTextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="start|center_vertical"
-        tools:text="GOOG" />
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="end">
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:layout_margin="@dimen/item_cardview_padding"
+        android:paddingEnd="@dimen/item_padding_base"
+        android:elevation="@dimen/cardview_default_elevation"
+        android:paddingStart="@dimen/item_padding_base">
 
         <TextView
-            android:id="@+id/price"
-            style="@style/BidPriceTextStyle"
+            android:id="@+id/symbol"
+            style="@style/StockSymbolTextStyle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/item_padding_base"
-            tools:text="1000.00" />
+            android:layout_height="match_parent"
+            android:paddingStart="@dimen/item_padding_base"
+            android:paddingEnd="@dimen/item_padding_base"
+            android:gravity="start|center_vertical"
+            tools:text="GOOG" />
 
-        <TextView
-            android:id="@+id/change"
-            style="@style/PercentChangeTextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/percent_change_pill_green"
-            android:paddingLeft="@dimen/item_padding_text"
-            android:paddingRight="@dimen/item_padding_text"
-            tools:text="100%" />
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="@dimen/item_padding_base"
+            android:paddingEnd="@dimen/item_padding_base"
+            android:gravity="end|center_vertical">
+
+            <TextView
+                android:id="@+id/price"
+                style="@style/BidPriceTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/item_padding_base"
+                tools:text="1000.00" />
+
+            <TextView
+                android:id="@+id/change"
+                style="@style/PercentChangeTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/percent_change_pill_green"
+                android:paddingLeft="@dimen/item_padding_text"
+                android:paddingRight="@dimen/item_padding_text"
+                tools:text="100%" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
 </LinearLayout>
