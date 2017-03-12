@@ -28,7 +28,7 @@
             android:layout_marginEnd="@dimen/widget_list_item_padding"
             android:gravity="end"
             tools:text="100.00" />
-
+        <!--TODO(1) Adjust spacing between these ones-->
         <TextView
             android:id="@+id/widget_change"
             android:layout_width="0dp"
