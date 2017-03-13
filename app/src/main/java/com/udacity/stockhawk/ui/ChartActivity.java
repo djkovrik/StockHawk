@@ -130,10 +130,16 @@ public class ChartActivity extends AppCompatActivity
         }
 
         String symbol = data.getString(SYMBOL_COLUMN_ID);
-        String price = data.getString(PRICE_COLUMN_ID);
         String name = data.getString(NAME_COLUMN_ID);
-        String priceAbsolute = data.getString(ABSOLUTE_CHANGE_COLUMN_ID);
-        String pricePercent = data.getString(PERCENTAGE_CHANGE_COLUMN_ID);
+
+        float priceRaw = data.getFloat(PRICE_COLUMN_ID);
+        String price = StringUtils.getPrice(priceRaw);
+
+        float priceAbsoluteRaw = data.getFloat(ABSOLUTE_CHANGE_COLUMN_ID);
+        String priceAbsolute = StringUtils.getSignedPriceChange(priceAbsoluteRaw);
+
+        float pricePercentRaw = data.getFloat(PERCENTAGE_CHANGE_COLUMN_ID);
+        String pricePercent = StringUtils.getPercentageChange(pricePercentRaw);
 
         symbolTextView.setText(symbol);
         priceTextView.setText(price);
