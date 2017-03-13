@@ -22,6 +22,7 @@
     <dimen name="widget_default_resize_height">40dp</dimen>
     <dimen name="widget_list_item_height">40dp</dimen>
     <dimen name="widget_list_item_padding">@dimen/item_padding_base</dimen>
+    <dimen name="widget_price_percent_width">60dp</dimen>
 
     <!--Elevation-->
     <dimen name="fab_elevation">6dp</dimen>
