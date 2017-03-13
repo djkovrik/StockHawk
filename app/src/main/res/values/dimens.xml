@@ -28,4 +28,10 @@
     <dimen name="toolbar_elevation">4dp</dimen>
     <dimen name="recyclerview_elevation">2dp</dimen>
 
+    <!--Chart activity-->
+    <dimen name="details_base_padding">16dp</dimen>
+    <dimen name="details_base_margin">16dp</dimen>
+    <dimen name="details_base_margin_half">8dp</dimen>
+
+
 </resources>

@@ -39,15 +39,19 @@ public class ChartActivity extends AppCompatActivity
 
     private static final String[] STOCK_PROJECTION = {
             Contract.Quote.COLUMN_SYMBOL,
-            Contract.Quote.COLUMN_NAME,
             Contract.Quote.COLUMN_PRICE,
+            Contract.Quote.COLUMN_NAME,
+            Contract.Quote.COLUMN_ABSOLUTE_CHANGE,
+            Contract.Quote.COLUMN_PERCENTAGE_CHANGE,
             Contract.Quote.COLUMN_HISTORY
     };
 
     private static final int SYMBOL_COLUMN_ID = 0;
-    private static final int NAME_COLUMN_ID = 1;
-    private static final int PRICE_COLUMN_ID = 2;
-    private static final int HISTORY_COLUMN_ID = 3;
+    private static final int PRICE_COLUMN_ID = 1;
+    private static final int NAME_COLUMN_ID = 2;
+    private static final int ABSOLUTE_CHANGE_COLUMN_ID = 3;
+    private static final int PERCENTAGE_CHANGE_COLUMN_ID = 4;
+    private static final int HISTORY_COLUMN_ID = 5;
 
     private Uri mUri;
 
@@ -56,12 +60,20 @@ public class ChartActivity extends AppCompatActivity
     TextView symbolTextView;
 
     @SuppressWarnings("WeakerAccess")
+    @BindView(R.id.chart_price)
+    TextView priceTextView;
+
+    @SuppressWarnings("WeakerAccess")
     @BindView(R.id.chart_name)
     TextView nameTextView;
 
     @SuppressWarnings("WeakerAccess")
-    @BindView(R.id.chart_price)
-    TextView priceTextView;
+    @BindView(R.id.chart_price_change_absolute)
+    TextView priceAbsoluteTextView;
+
+    @SuppressWarnings("WeakerAccess")
+    @BindView(R.id.chart_price_change_percent)
+    TextView pricePercentTextView;
 
     @SuppressWarnings("WeakerAccess")
     @BindView(R.id.chart)
@@ -105,16 +117,22 @@ public class ChartActivity extends AppCompatActivity
         }
 
         String symbol = data.getString(SYMBOL_COLUMN_ID);
-        String name = data.getString(NAME_COLUMN_ID);
         String price = data.getString(PRICE_COLUMN_ID);
+        String name = data.getString(NAME_COLUMN_ID);
+        String priceAbsolute = data.getString(ABSOLUTE_CHANGE_COLUMN_ID);
+        String pricePercent = data.getString(PERCENTAGE_CHANGE_COLUMN_ID);
 
         symbolTextView.setText(symbol);
-        nameTextView.setText(name);
         priceTextView.setText(price);
+        nameTextView.setText(name);
+        priceAbsoluteTextView.setText(priceAbsolute);
+        pricePercentTextView.setText(pricePercent);
 
         String history = data.getString(HISTORY_COLUMN_ID);
 
         setupChart(history);
+
+        getActionBar().setTitle(String.format("%s - %s", getString(R.string.app_name), symbol));
     }
 
     private void setupChart(String history) {
@@ -123,7 +141,7 @@ public class ChartActivity extends AppCompatActivity
 
         LineDataSet dataSet = new LineDataSet(chartData, "");
         dataSet.setColor(Color.YELLOW);
-        dataSet.setLineWidth(2f);
+        dataSet.setLineWidth(1f);
         dataSet.setDrawCircles(false);
 
         LineData lineData = new LineData(dataSet);

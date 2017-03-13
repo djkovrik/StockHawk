@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    android:padding="@dimen/details_base_padding">
+
+    <TextView
+        android:id="@+id/chart_name"
+        style="@style/Base.TextAppearance.AppCompat.Headline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:textColor="@color/colorPrimaryTextLight"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Alphabet Inc." />
+
+    <TextView
+        android:id="@+id/chart_symbol"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="@dimen/details_base_margin_half"
+        android:textColor="@color/colorSecondaryText"
+        app:layout_constraintLeft_toLeftOf="@+id/chart_name"
+        app:layout_constraintTop_toBottomOf="@+id/chart_name"
+        tools:text="GOOG" />
+
+    <TextView
+        android:id="@+id/chart_price"
+        style="@style/Base.TextAppearance.AppCompat.Display1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="@dimen/details_base_margin"
+        android:textColor="@color/colorPrimaryTextLight"
+        app:layout_constraintLeft_toLeftOf="@+id/chart_symbol"
+        app:layout_constraintTop_toBottomOf="@+id/chart_symbol"
+        tools:text="100.00$" />
+
+    <TextView
+        android:id="@+id/chart_price_change_absolute"
+        style="@style/Base.TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/details_base_margin_half"
+        android:layout_marginStart="@dimen/details_base_margin"
+        android:layout_marginTop="0dp"
+        android:textColor="@color/colorPrimaryTextLight"
+        app:layout_constraintLeft_toRightOf="@+id/chart_price"
+        app:layout_constraintTop_toTopOf="@+id/chart_price"
+        tools:text="+20.0$" />
+
+    <TextView
+        android:id="@+id/chart_price_change_percent"
+        style="@style/Base.TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/details_base_margin"
+        android:textColor="@color/colorPrimaryTextLight"
+        app:layout_constraintBottom_toBottomOf="@+id/chart_price"
+        app:layout_constraintLeft_toRightOf="@+id/chart_price"
+        tools:text="+20.0%" />
+
+</android.support.constraint.ConstraintLayout>
