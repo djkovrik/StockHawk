@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -56,6 +58,10 @@ public class ChartActivity extends AppCompatActivity
     private Uri mUri;
 
     @SuppressWarnings("WeakerAccess")
+    @BindView(R.id.details_toolbar)
+    Toolbar toolbar;
+
+    @SuppressWarnings("WeakerAccess")
     @BindView(R.id.chart_symbol)
     TextView symbolTextView;
 
@@ -88,6 +94,13 @@ public class ChartActivity extends AppCompatActivity
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra(STOCK_URI)) {
             mUri = intent.getParcelableExtra(STOCK_URI);
+        }
+
+        setSupportActionBar(toolbar);
+        ActionBar supportActionBar = getSupportActionBar();
+
+        if (supportActionBar != null) {
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
         }
 
         getSupportLoaderManager().initLoader(STOCK_LOADER, null, this);
@@ -132,7 +145,7 @@ public class ChartActivity extends AppCompatActivity
 
         setupChart(history);
 
-        getActionBar().setTitle(String.format("%s - %s", getString(R.string.app_name), symbol));
+        toolbar.setTitle(String.format("%s - %s", getString(R.string.app_name), symbol));
     }
 
     private void setupChart(String history) {
