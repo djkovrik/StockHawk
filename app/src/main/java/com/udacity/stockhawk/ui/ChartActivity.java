@@ -2,10 +2,10 @@ package com.udacity.stockhawk.ui;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.ActionBar;
@@ -159,14 +159,25 @@ public class ChartActivity extends AppCompatActivity
         List<Entry> chartData = StringUtils.parseHistoryString(history);
 
         LineDataSet dataSet = new LineDataSet(chartData, "");
-        dataSet.setColor(Color.YELLOW);
+        int chartColor = ContextCompat.getColor(getApplicationContext(), R.color.colorAccent);
+        int axisTextColor = ContextCompat.getColor(getApplicationContext(), R.color.colorSecondaryText);
+
+        dataSet.setColor(chartColor);
         dataSet.setLineWidth(1f);
         dataSet.setDrawCircles(false);
+        dataSet.setDrawValues(false);
+        dataSet.setDrawHighlightIndicators(false);
 
         LineData lineData = new LineData(dataSet);
+
         historyChart.setData(lineData);
-        historyChart.setDragEnabled(false);
-        historyChart.setTouchEnabled(false);
+        historyChart.setTouchEnabled(true);
+        historyChart.setDragEnabled(true);
+        historyChart.setPinchZoom(true);
+        historyChart.setDoubleTapToZoomEnabled(true);
+        historyChart.setDrawBorders(true);
+        historyChart.setBorderColor(axisTextColor);
+        historyChart.setBorderWidth(1f);
 
         Legend legend = historyChart.getLegend();
         legend.setEnabled(false);
@@ -176,12 +187,14 @@ public class ChartActivity extends AppCompatActivity
         historyChart.setDescription(description);
 
         YAxis left = historyChart.getAxisLeft();
+        left.setTextColor(axisTextColor);
         left.setValueFormatter(new MyYAxisFormatter());
 
         YAxis right = historyChart.getAxisRight();
         right.setEnabled(false);
 
         XAxis top = historyChart.getXAxis();
+        top.setTextColor(axisTextColor);
         top.setValueFormatter(new MyXAxisFormatter());
 
         historyChart.setContentDescription(getString(R.string.a11y_chart));
