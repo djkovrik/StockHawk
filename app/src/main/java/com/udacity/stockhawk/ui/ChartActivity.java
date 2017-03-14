@@ -37,6 +37,7 @@ public class ChartActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
 
     public static final String STOCK_URI = "URI";
+    public static final String APPBAR_TITLE_TEXT = "TEXT";
 
     private static final int STOCK_LOADER = 679;
 
@@ -102,6 +103,11 @@ public class ChartActivity extends AppCompatActivity
 
         if (supportActionBar != null) {
             supportActionBar.setDisplayHomeAsUpEnabled(true);
+
+            if (savedInstanceState != null) {
+                String title = savedInstanceState.getString(APPBAR_TITLE_TEXT);
+                supportActionBar.setTitle(title);
+            }
         }
 
         getSupportLoaderManager().initLoader(STOCK_LOADER, null, this);
@@ -121,6 +127,18 @@ public class ChartActivity extends AppCompatActivity
 
             default:
                 throw new RuntimeException("Loader not implemented: " + loaderId);
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        ActionBar supportActionBar = getSupportActionBar();
+
+        if (supportActionBar != null) {
+            String title = supportActionBar.getTitle().toString();
+            outState.putString(APPBAR_TITLE_TEXT, title);
         }
     }
 
