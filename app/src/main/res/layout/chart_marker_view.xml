@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/marker_view_stroke"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/chart_marker_view_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Base.TextAppearance.AppCompat.Caption"
+        tool:text="Jan 01, 2017: 100$" />
+
+</LinearLayout>

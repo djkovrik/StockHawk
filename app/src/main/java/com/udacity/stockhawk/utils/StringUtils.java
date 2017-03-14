@@ -17,6 +17,7 @@ public class StringUtils {
     private static final DecimalFormat dollarFormat;
     private static final DecimalFormat percentageFormat;
     private static final SimpleDateFormat dateFormatter;
+    private static final SimpleDateFormat markerDateFormatter;
 
     static {
         dollarFormat = (DecimalFormat) NumberFormat.getCurrencyInstance(Locale.US);
@@ -30,6 +31,7 @@ public class StringUtils {
         percentageFormat.setPositivePrefix("+");
 
         dateFormatter = new SimpleDateFormat("MMM yy", Locale.US);
+        markerDateFormatter = new SimpleDateFormat("MM/dd/yy", Locale.US);
     }
 
     public static String getPrice(float price) {
@@ -46,6 +48,10 @@ public class StringUtils {
 
     public static String getDateFromFloat(float time) {
         return dateFormatter.format(new Date((long)time));
+    }
+
+    public static String getMarkerDateFromFloat(float time) {
+        return markerDateFormatter.format(new Date((long)time));
     }
 
     public static List<Entry> parseHistoryString(String history) {

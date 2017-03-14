@@ -23,6 +23,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.data.Contract;
+import com.udacity.stockhawk.ui.graph.ChartCustomMarkerView;
 import com.udacity.stockhawk.ui.graph.MyXAxisFormatter;
 import com.udacity.stockhawk.ui.graph.MyYAxisFormatter;
 import com.udacity.stockhawk.utils.StringUtils;
@@ -159,26 +160,41 @@ public class ChartActivity extends AppCompatActivity
         List<Entry> chartData = StringUtils.parseHistoryString(history);
 
         LineDataSet dataSet = new LineDataSet(chartData, "");
+
         int chartColor = ContextCompat.getColor(getApplicationContext(), R.color.colorAccent);
-        int axisTextColor = ContextCompat.getColor(getApplicationContext(), R.color.colorSecondaryText);
+        int circleColor = ContextCompat.getColor(getApplicationContext(), R.color.colorAccent);
+        int circleColorHole = ContextCompat.getColor(getApplicationContext(), R.color.colorAccent);
+        int lightColor = ContextCompat.getColor(getApplicationContext(), R.color.colorSecondaryText);
 
         dataSet.setColor(chartColor);
+        dataSet.setCircleColor(circleColor);
+        dataSet.setCircleColorHole(circleColorHole);
         dataSet.setLineWidth(1f);
-        dataSet.setDrawCircles(false);
+        dataSet.setCircleRadius(2f);
+        dataSet.setDrawCircles(true);
         dataSet.setDrawValues(false);
         dataSet.setDrawHighlightIndicators(false);
 
         LineData lineData = new LineData(dataSet);
 
         historyChart.setData(lineData);
+        // Touch behaviour
         historyChart.setTouchEnabled(true);
         historyChart.setDragEnabled(true);
         historyChart.setPinchZoom(true);
         historyChart.setDoubleTapToZoomEnabled(true);
-        historyChart.setDrawBorders(true);
-        historyChart.setBorderColor(axisTextColor);
-        historyChart.setBorderWidth(1f);
         historyChart.setKeepPositionOnRotation(true);
+        historyChart.setHighlightPerTapEnabled(true);
+        historyChart.setMaxHighlightDistance(50f);
+        //Style
+        historyChart.setDrawBorders(true);
+        historyChart.setBorderColor(lightColor);
+        historyChart.setBorderWidth(1f);
+
+        ChartCustomMarkerView customMarkerView =
+                new ChartCustomMarkerView(getApplicationContext(), R.layout.chart_marker_view);
+
+        historyChart.setMarker(customMarkerView);
 
         Legend legend = historyChart.getLegend();
         legend.setEnabled(false);
@@ -188,14 +204,14 @@ public class ChartActivity extends AppCompatActivity
         historyChart.setDescription(description);
 
         YAxis left = historyChart.getAxisLeft();
-        left.setTextColor(axisTextColor);
+        left.setTextColor(lightColor);
         left.setValueFormatter(new MyYAxisFormatter());
 
         YAxis right = historyChart.getAxisRight();
         right.setEnabled(false);
 
         XAxis top = historyChart.getXAxis();
-        top.setTextColor(axisTextColor);
+        top.setTextColor(lightColor);
         top.setValueFormatter(new MyXAxisFormatter());
 
         historyChart.setContentDescription(getString(R.string.a11y_chart));
