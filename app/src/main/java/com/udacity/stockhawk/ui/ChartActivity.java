@@ -178,6 +178,7 @@ public class ChartActivity extends AppCompatActivity
         historyChart.setDrawBorders(true);
         historyChart.setBorderColor(axisTextColor);
         historyChart.setBorderWidth(1f);
+        historyChart.setKeepPositionOnRotation(true);
 
         Legend legend = historyChart.getLegend();
         legend.setEnabled(false);

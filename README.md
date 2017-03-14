@@ -27,4 +27,4 @@ All of the issues you need to address to meet specifications are hinted at in th
 - [x] Strings are all included in the strings.xml file and untranslatable strings have a translatable tag marked to false.
 
 ### Required Behavior
-- [ ] App conforms to common standards found in the [Android Nanodegree General Project Guidelines](http://udacity.github.io/android-nanodegree-guidelines/core.html) .
+- [x] App conforms to common standards found in the [Android Nanodegree General Project Guidelines](http://udacity.github.io/android-nanodegree-guidelines/core.html) .
