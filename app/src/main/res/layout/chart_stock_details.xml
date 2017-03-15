@@ -8,7 +8,8 @@
     android:background="@color/colorPrimary"
     android:elevation="@dimen/cardview_default_elevation"
     android:orientation="vertical"
-    android:padding="@dimen/details_base_padding">
+    android:padding="@dimen/details_base_padding"
+    tools:ignore="Overdraw">
 
     <TextView
         android:id="@+id/chart_name"

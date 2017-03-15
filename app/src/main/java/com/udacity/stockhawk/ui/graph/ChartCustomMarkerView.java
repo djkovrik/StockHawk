@@ -1,5 +1,6 @@
 package com.udacity.stockhawk.ui.graph;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.widget.TextView;
 
@@ -13,6 +14,7 @@ import com.udacity.stockhawk.utils.StringUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+@SuppressLint("ViewConstructor")
 public class ChartCustomMarkerView extends MarkerView {
 
     @SuppressWarnings("WeakerAccess")
@@ -21,6 +23,7 @@ public class ChartCustomMarkerView extends MarkerView {
 
     private MPPointF mOffset;
 
+    @SuppressWarnings("SameParameterValue")
     public ChartCustomMarkerView(Context context, int layoutResource) {
         super(context, layoutResource);
         ButterKnife.bind(this);

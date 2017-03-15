@@ -15,7 +15,7 @@ import com.udacity.stockhawk.utils.StringUtils;
 
 import timber.log.Timber;
 
-public class StockListWidgetFactory implements RemoteViewsService.RemoteViewsFactory {
+class StockListWidgetFactory implements RemoteViewsService.RemoteViewsFactory {
 
     // Query projection
     private static final String[] STOCK_PROJECTION = {
@@ -29,13 +29,11 @@ public class StockListWidgetFactory implements RemoteViewsService.RemoteViewsFac
     private static final int INDEX_PRICE = 1;
     private static final int INDEX_PERCENTAGE_CHANGE = 2;
 
-    private Context mContext;
-    private Intent mIntent;
+    private final Context mContext;
     private Cursor mCursor;
 
-    public StockListWidgetFactory(Context mContext, Intent mIntent) {
+    StockListWidgetFactory(Context mContext) {
         this.mContext = mContext;
-        this.mIntent = mIntent;
         mCursor = null;
     }
 

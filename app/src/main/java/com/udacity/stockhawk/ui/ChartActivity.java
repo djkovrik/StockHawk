@@ -37,7 +37,7 @@ public class ChartActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
 
     public static final String STOCK_URI = "URI";
-    public static final String APPBAR_TITLE_TEXT = "TEXT";
+    private static final String APPBAR_TITLE_TEXT = "TEXT";
 
     private static final int STOCK_LOADER = 679;
 
@@ -137,8 +137,11 @@ public class ChartActivity extends AppCompatActivity
         ActionBar supportActionBar = getSupportActionBar();
 
         if (supportActionBar != null) {
-            String title = supportActionBar.getTitle().toString();
-            outState.putString(APPBAR_TITLE_TEXT, title);
+            CharSequence title = supportActionBar.getTitle();
+            
+            if (title != null) {
+                outState.putString(APPBAR_TITLE_TEXT, title.toString());
+            }
         }
     }
 
