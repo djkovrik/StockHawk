@@ -6,6 +6,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.Main" parent="AppTheme">
+        <item name="android:windowContentTransitions">true</item>
+    </style>
+
+    <style name="AppTheme.Chart" parent="AppTheme">
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowEnterTransition">@transition/chart_window_enter_transition</item>
+        <item name="android:windowReturnTransition">@transition/chart_window_return_transition</item>
+    </style>
+
     <style name="PercentChangeTextStyle">
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">#FFF</item>

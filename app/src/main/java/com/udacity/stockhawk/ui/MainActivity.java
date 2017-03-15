@@ -2,6 +2,7 @@ package com.udacity.stockhawk.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -78,7 +79,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         Intent intent = new Intent(getApplicationContext(), ChartActivity.class);
         intent.putExtra(ChartActivity.STOCK_URI, uri);
-        startActivity(intent);
+
+        startActivity(intent,
+                ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
     }
 
     @Override
@@ -297,8 +300,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         fab.animate()
                 .translationY(0)
                 .setInterpolator(new OvershootInterpolator(1.f))
-                .setStartDelay(300)
-                .setDuration(400)
+                .setStartDelay(250)
+                .setDuration(250)
                 .start();
     }
 

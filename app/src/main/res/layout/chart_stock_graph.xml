@@ -4,6 +4,7 @@
     android:layout_height="match_parent">
 
     <android.support.v7.widget.CardView
+        android:id="@+id/chart_cardview_graph"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:elevation="@dimen/cardview_default_elevation">
