@@ -8,9 +8,10 @@
 
     <TextView
         android:id="@+id/chart_marker_view_text"
+        style="@style/Base.TextAppearance.AppCompat.Caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/Base.TextAppearance.AppCompat.Caption"
+        android:textColor="@color/colorPrimaryTextLight"
         tool:text="Jan 01, 2017: 100$" />
 
 </LinearLayout>
