@@ -3,12 +3,19 @@ package com.udacity.stockhawk.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -52,7 +59,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @SuppressWarnings("WeakerAccess")
     @BindView(R.id.error)
     TextView error;
+
     private StockAdapter adapter;
+    private Paint mPaint;
+    private Bitmap mBitmap;
 
     @Override
     public void onClick(String symbol) {
@@ -117,8 +127,40 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 PrefUtils.removeStock(MainActivity.this, symbol);
                 getContentResolver().delete(Contract.Quote.makeUriForStock(symbol), null, null);
             }
-        }).attachToRecyclerView(stockRecyclerView);
 
+            @Override
+            public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,
+                                    float dX, float dY, int actionState, boolean isCurrentlyActive) {
+                super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+
+                int iconColor = ContextCompat.getColor(getApplicationContext(), R.color.material_red_700);
+
+                if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
+                    View itemView = viewHolder.itemView;
+
+                    if (mPaint == null) {
+                        mPaint = new Paint();
+                    }
+
+                    if (mBitmap == null) {
+                        mBitmap = BitmapFactory.decodeResource(
+                                getApplicationContext().getResources(),
+                                R.drawable.ic_delete_white_24dp
+                        );
+                    }
+
+                    PorterDuffColorFilter filter = new PorterDuffColorFilter(iconColor, PorterDuff.Mode.SRC_ATOP);
+                    mPaint.setColorFilter(filter);
+
+                    float iconOffset = ((float) itemView.getBottom() - (float) itemView.getTop() - mBitmap.getHeight()) / 2;
+
+                    c.drawBitmap(mBitmap,
+                            (float) itemView.getLeft() + iconOffset / 2,
+                            (float) itemView.getTop() + iconOffset,
+                            mPaint);
+                }
+            }
+        }).attachToRecyclerView(stockRecyclerView);
 
     }
 
