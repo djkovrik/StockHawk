@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="start|center_vertical"
         android:layout_marginStart="@dimen/widget_list_item_padding"
+        android:textColor="@color/colorPrimaryTextLight"
         tools:text="XXXX" />
 
     <LinearLayout
@@ -27,6 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/widget_list_item_padding"
             android:gravity="end"
+            android:textColor="@color/colorPrimaryTextLight"
             tools:text="100.00" />
 
         <TextView
