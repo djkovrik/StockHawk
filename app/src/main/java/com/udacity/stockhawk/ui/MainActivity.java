@@ -1,5 +1,7 @@
 package com.udacity.stockhawk.ui;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -27,6 +29,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.OvershootInterpolator;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -64,6 +67,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private Paint mPaint;
     private Bitmap mBitmap;
 
+    private boolean pendingStartupAnimation;
+
     @Override
     public void onClick(String symbol) {
         Timber.d("Symbol clicked: %s", symbol);
@@ -84,6 +89,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
+
+        if (savedInstanceState == null) {
+            pendingStartupAnimation = true;
+        }
 
         adapter = new StockAdapter(this, this);
         stockRecyclerView.setAdapter(adapter);
@@ -256,7 +265,41 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         getMenuInflater().inflate(R.menu.main_activity_settings, menu);
         MenuItem item = menu.findItem(R.id.action_change_units);
         setDisplayModeMenuItemIcon(item);
+
+        if (pendingStartupAnimation) {
+            pendingStartupAnimation = false;
+            startToolbarAnimation();
+        }
+
         return true;
+    }
+
+    private void startToolbarAnimation() {
+        int fabOffset = fab.getHeight() * 2;
+        fab.setTranslationY(fabOffset);
+
+        int toolbarSize = toolbar.getHeight();
+        toolbar.setTranslationY(-toolbarSize);
+
+        toolbar.animate()
+                .translationY(0)
+                .setDuration(250)
+                .setStartDelay(250)
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        startFabAnimation();
+                    }
+                });
+    }
+
+    private void startFabAnimation() {
+        fab.animate()
+                .translationY(0)
+                .setInterpolator(new OvershootInterpolator(1.f))
+                .setStartDelay(300)
+                .setDuration(400)
+                .start();
     }
 
     @Override
