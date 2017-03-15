@@ -1,5 +1,7 @@
 # Stock Hawk
 
+![Screen](https://raw.githubusercontent.com/djkovrik/StockHawk/master/images/poster.jpg)
+
 This is the starter code for project 3 in Udacity's [Android Developer Nanodegree Program](https://www.udacity.com/course/android-developer-nanodegree-by-google--nd801).
 
 The app currently finds stock prices from the internet and allows users to add stocks to track.
