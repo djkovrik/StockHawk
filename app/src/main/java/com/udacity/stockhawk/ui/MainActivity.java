@@ -272,9 +272,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         MenuItem item = menu.findItem(R.id.action_change_units);
         setDisplayModeMenuItemIcon(item);
 
-        hideToolbarAndFab();
-
         if (pendingStartupAnimation) {
+            hideToolbarAndFab();
             pendingStartupAnimation = false;
             startToolbarAnimation();
         }
