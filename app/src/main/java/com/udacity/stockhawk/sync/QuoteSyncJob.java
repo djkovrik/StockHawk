@@ -134,14 +134,15 @@ public final class QuoteSyncJob {
                             Contract.Quote.URI,
                             quoteCVs.toArray(new ContentValues[quoteCVs.size()]));
 
-            Intent dataUpdatedIntent = new Intent(ACTION_DATA_UPDATED);
-            context.sendBroadcast(dataUpdatedIntent);
-
         } catch (IOException exception) {
             Timber.e(exception, "Error fetching stock quotes");
         }
 
-        // Send widgets update broadcast
+        sendWidgetsUpdateBroadcast(context);
+    }
+
+    private static void sendWidgetsUpdateBroadcast(Context context) {
+
         Intent dataUpdatedIntent = new Intent(ACTION_DATA_UPDATED).setPackage(context.getPackageName());
         context.sendBroadcast(dataUpdatedIntent);
     }
