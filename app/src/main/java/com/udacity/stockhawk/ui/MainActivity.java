@@ -272,6 +272,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         MenuItem item = menu.findItem(R.id.action_change_units);
         setDisplayModeMenuItemIcon(item);
 
+        hideToolbarAndFab();
+
         if (pendingStartupAnimation) {
             pendingStartupAnimation = false;
             startToolbarAnimation();
@@ -280,13 +282,15 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         return true;
     }
 
-    private void startToolbarAnimation() {
+    private void hideToolbarAndFab() {
         int fabOffset = fab.getHeight() * 2;
         fab.setTranslationY(fabOffset);
 
         int toolbarSize = toolbar.getHeight();
         toolbar.setTranslationY(-toolbarSize);
+    }
 
+    private void startToolbarAnimation() {
         toolbar.animate()
                 .translationY(0)
                 .setDuration(250)
