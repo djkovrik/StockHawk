@@ -2,7 +2,7 @@
 
 ![Screen](https://raw.githubusercontent.com/djkovrik/StockHawk/master/images/poster.jpg)
 
-Stock Hawk App created as a part of Udacity's [Android Developer Nanodegree Program](https://www.udacity.com/course/android-developer-nanodegree-by-google--nd801). The application allows user to track stocks date using Yahoo finance API.
+Stock Hawk App created as a part of Udacity [Android Developer Nanodegree Program](https://www.udacity.com/course/android-developer-nanodegree-by-google--nd801). The application allows user to track stocks date using Yahoo finance API.
 
 ## Udacity Instructions
 

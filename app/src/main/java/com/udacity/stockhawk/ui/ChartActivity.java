@@ -185,12 +185,12 @@ public class ChartActivity extends AppCompatActivity
         int chartColor = ContextCompat.getColor(getApplicationContext(), R.color.colorAccent);
         int circleColor = ContextCompat.getColor(getApplicationContext(), R.color.colorAccent);
         int circleColorHole = ContextCompat.getColor(getApplicationContext(), R.color.colorAccent);
-        int lightColor = ContextCompat.getColor(getApplicationContext(), R.color.colorSecondaryText);
+        int axisTextColor = ContextCompat.getColor(getApplicationContext(), R.color.colorSecondaryText);
 
         dataSet.setColor(chartColor);
         dataSet.setCircleColor(circleColor);
         dataSet.setCircleColorHole(circleColorHole);
-        dataSet.setLineWidth(1f);
+        dataSet.setLineWidth(2f);
         dataSet.setCircleRadius(2f);
         dataSet.setDrawCircles(true);
         dataSet.setDrawValues(false);
@@ -209,7 +209,7 @@ public class ChartActivity extends AppCompatActivity
         historyChart.setMaxHighlightDistance(50f);
         //Style
         historyChart.setDrawBorders(true);
-        historyChart.setBorderColor(lightColor);
+        historyChart.setBorderColor(axisTextColor);
         historyChart.setBorderWidth(1f);
 
         ChartCustomMarkerView customMarkerView =
@@ -225,14 +225,14 @@ public class ChartActivity extends AppCompatActivity
         historyChart.setDescription(description);
 
         YAxis left = historyChart.getAxisLeft();
-        left.setTextColor(lightColor);
+        left.setTextColor(axisTextColor);
         left.setValueFormatter(new MyYAxisFormatter());
 
         YAxis right = historyChart.getAxisRight();
         right.setEnabled(false);
 
         XAxis top = historyChart.getXAxis();
-        top.setTextColor(lightColor);
+        top.setTextColor(axisTextColor);
         top.setValueFormatter(new MyXAxisFormatter());
 
         historyChart.setContentDescription(getString(R.string.a11y_chart));
