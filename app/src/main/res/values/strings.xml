@@ -29,6 +29,7 @@
     <string name="a11y_percent">Percent</string>
     <string name="a11y_absolute">Absolute</string>
     <string name="a11y_chart">Price changing graph.</string>
+    <string name="a11y_add_stock">Add a new stock.</string>
 
     <!--Default stock names-->
     <string name="default_stocks_yahoo" translatable="false">YHOO</string>
