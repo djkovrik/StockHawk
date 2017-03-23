@@ -75,25 +75,25 @@ public final class QuoteSyncJob {
             while (iterator.hasNext()) {
                 String symbol = iterator.next();
 
-
                 Stock stock = quotes.get(symbol);
+
+                if (stock == null) {
+
+                    handleIncorrectStock(context,
+                            context.getString(R.string.error_stock_incorrect),
+                            symbol);
+
+                    continue;
+                }
+
                 StockQuote quote = stock.getQuote();
 
                 if (quote.getPrice() == null) {
-                    // Throw message from background thread into UI thread
-                    new Handler(Looper.getMainLooper()).post(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(context,
-                                    context.getString(R.string.error_stock_not_found),
-                                    Toast.LENGTH_SHORT)
-                                    .show();
-                        }
-                    });
-                    // Remove invalid stock from prefs
-                    PrefUtils.removeStock(context, symbol);
 
-                    // Skip the rest part of the loop
+                    handleIncorrectStock(context,
+                            context.getString(R.string.error_stock_not_found),
+                            symbol);
+
                     continue;
                 }
 
@@ -139,6 +139,23 @@ public final class QuoteSyncJob {
         } catch (IOException exception) {
             Timber.e(exception, "Error fetching stock quotes");
         }
+    }
+
+    private static void handleIncorrectStock(final Context context, final String message, String symbol) {
+
+        // Remove invalid stock from prefs
+        PrefUtils.removeStock(context, symbol);
+
+        // Throw message from background thread into UI thread
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(context,
+                        message,
+                        Toast.LENGTH_SHORT)
+                        .show();
+            }
+        });
     }
 
     private static void sendWidgetsUpdateBroadcast(Context context) {

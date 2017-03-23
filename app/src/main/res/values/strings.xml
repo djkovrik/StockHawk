@@ -12,6 +12,7 @@
     <string name="error_no_network">No network connectivity! Will load stock cursor when the network is available.</string>
     <string name="error_no_stocks">No stocks added! Hit the floating action button to add one.</string>
     <string name="error_stock_not_found">Stock not found! Please specify the correct name and try again.</string>
+    <string name="error_stock_incorrect">Incorrect name! Please specify the correct name and try again.</string>
 
     <!--Toast messages-->
     <string name="toast_stock_added_no_connectivity">Symbol %s added. Will refresh when network available.</string>
